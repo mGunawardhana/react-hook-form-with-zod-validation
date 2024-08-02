@@ -1,9 +1,10 @@
 import React from "react";
 import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
 import { useForm } from "react-hook-form";
 import { userSchema, UserSchema } from "../schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Box, Grid, TextField } from "@mui/material";
+import { Button, Grid, TextField } from "@mui/material";
 
 const MyForm: React.FC = () => {
     const {
@@ -36,11 +37,12 @@ const MyForm: React.FC = () => {
                         <Grid item xs={3}>
                             <TextField
                                 id="age"
+                                type="number"
                                 label="Age"
                                 variant="outlined"
                                 size="small"
                                 fullWidth
-                                {...register("age")}
+                                {...register("age", { valueAsNumber: true })}
                                 error={!!errors.age}
                                 helperText={errors.age ? errors.age.message : ""}
                             />
@@ -68,6 +70,11 @@ const MyForm: React.FC = () => {
                                 error={!!errors.password}
                                 helperText={errors.password ? errors.password.message : ""}
                             />
+                        </Grid>
+                    </Grid>
+                    <Grid container spacing={2}>
+                        <Grid item xs={3} sx={{ paddingTop: 2 }}>
+                            <Button variant="contained" type='submit'>Save</Button>
                         </Grid>
                     </Grid>
                 </form>
